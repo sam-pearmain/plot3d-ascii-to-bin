@@ -1,4 +1,4 @@
-mod converter;
+mod plot3d;
 
 use std::env;
 use std::process;
@@ -13,7 +13,7 @@ fn main() {
     let input_file = &args[1];
     let output_file = &args[2];
 
-    match converter::convert_plot3d(input_file, output_file) {
+    match plot3d::convert_plot3d_ascii_to_binary(input_file, output_file) {
         Ok(_) => {
             println!("successfully converted {} to {}", input_file, output_file);
         }
