@@ -1,5 +1,25 @@
 mod converter;
 
+use std::env;
+use std::process;
+
 fn main() {
-    println!("Hello, world!");
+    let args: Vec<String> = env::args().collect();
+    if args.len() != 3 {
+        eprintln!("usage: {} <input_ascii_file> <output_binary_file>", args[0]);
+        process::exit(1);
+    }
+
+    let input_file = &args[1];
+    let output_file = &args[2];
+
+    match converter::convert_file(input_file, output_file) {
+        Ok(_) => {
+            println!("successfully converted {} to {}", input_file, output_file);
+        }
+        Err(e) => {
+            eprintln!("error converting file: {}", e);
+            process::exit(1);
+        }
+    }
 }
