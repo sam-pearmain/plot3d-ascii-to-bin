@@ -20,7 +20,7 @@ pub fn convert_plot3d_ascii_to_binary(input: &str, output: &str) -> io::Result<(
     }
 
     // write the binary plot3d file (using double precision)
-    write_plot3d_binary(output, &blocks, true)?;
+    write_plot3d_binary(output, &blocks, true, false)?;
 
     Ok(())
 }
