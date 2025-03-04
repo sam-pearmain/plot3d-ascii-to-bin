@@ -5,12 +5,12 @@ use std::io::{self, BufRead, BufReader, Lines};
 
 #[derive(Debug)]
 pub struct Plot3DBlock {
-    imax: i32, 
-    jmax: i32,
-    kmax: i32, 
-    x: Vec<f64>,
-    y: Vec<f64>,
-    z: Vec<f64>,
+    pub imax: i32, 
+    pub jmax: i32, 
+    pub kmax: i32, 
+    pub x: Vec<f64>,
+    pub y: Vec<f64>,
+    pub z: Vec<f64>,
 }
 
 pub fn read_plot3d_ascii(filename: &str) -> io::Result<Vec<Plot3DBlock>> {
@@ -77,6 +77,10 @@ pub fn read_plot3d_ascii(filename: &str) -> io::Result<Vec<Plot3DBlock>> {
     Ok(blocks)
 }
 
+pub fn read_plot3d_binary() {
+    todo!()
+}
+
 fn read_plot3d_chunk_ascii(lines: &mut Lines<BufReader<File>>, imax: i32, jmax: i32, kmax: i32) -> io::Result<Vec<f64>> {
     let total_size = (imax * jmax * kmax) as usize;
     let mut values: Vec<f64> = Vec::with_capacity(total_size);
@@ -102,4 +106,8 @@ fn read_plot3d_chunk_ascii(lines: &mut Lines<BufReader<File>>, imax: i32, jmax: 
     }
 
     Ok(values)
+}
+
+fn read_plot3d_chunk_binary() {
+    todo!()
 }
