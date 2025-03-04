@@ -34,6 +34,7 @@ fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, doub
             writer.write_all(&(*value as f32).to_be_bytes())?;
         }
     }
+
     // write y coordinates
     for value in &block.y {
         if double_precision {
@@ -42,6 +43,7 @@ fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, doub
             writer.write_all(&(*value as f32).to_be_bytes())?;
         }
     }
+    
     // write z coordinates
     for value in &block.z {
         if double_precision {
