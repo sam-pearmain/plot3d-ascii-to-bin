@@ -1,5 +1,5 @@
-pub mod convert_plot3d;
-pub mod read_plot3d;
-pub mod write_plot3d;
+pub mod convert;
+pub mod read;
+pub mod write;
 
-pub use convert_plot3d::convert_plot3d;
+pub use convert::convert_plot3d;
