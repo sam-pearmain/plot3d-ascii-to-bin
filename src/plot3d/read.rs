@@ -14,7 +14,7 @@ pub struct Plot3DBlock {
 }
 
 pub fn read_plot3d_ascii(filename: &str) -> io::Result<Vec<Plot3DBlock>> {
-    if !filename.to_lowercase().ends_with(".xyz") {
+    if !filename.to_lowercase().ends_with(".xyz") && !filename.to_lowercase().ends_with(".p3d") {
         return Err(io::Error::new(
             io::ErrorKind::InvalidInput,
             "input file must have .xyz extension"
