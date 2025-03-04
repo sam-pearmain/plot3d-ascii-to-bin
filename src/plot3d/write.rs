@@ -55,7 +55,7 @@ fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, doub
     }
 
     // write y coordinates
-    for value in &block.z {
+    for value in &block.y {
         if double_precision {
             match big_endian {
                 true => writer.write_all(&value.to_be_bytes())?,
