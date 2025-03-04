@@ -31,7 +31,7 @@ pub fn read_plot3d_ascii(filename: &str) -> io::Result<Vec<Plot3DBlock>> {
         .ok_or_else(|| io::Error::new(io::ErrorKind::UnexpectedEof, "input file is empty"))??
         .trim()
         .parse()
-        .map_err(|_| io::Error::new(io::ErrorKind::InvalidData, "invalid number of blocks, file possible corrupt"))?;
+        .map_err(|_| io::Error::new(io::ErrorKind::InvalidData, "invalid number of blocks, file possibly corrupt"))?;
     
     if nblocks <= 0 {
         return Err(io::Error::new(
