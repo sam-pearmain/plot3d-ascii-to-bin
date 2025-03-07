@@ -41,6 +41,7 @@ pub fn write_plot3d_binary(filename: &str, blocks: &[Plot3DBlock], double_precis
 fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, double_precision: bool, big_endian: bool) -> io::Result<()> {
     // write x coordinates
     for value in &block.x {
+        let value: f64 = value * 0.001; // convert from mm to m
         if double_precision {
             match big_endian {
                 true => writer.write_all(&value.to_be_bytes())?,
@@ -48,14 +49,15 @@ fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, doub
             }
         } else {
             match big_endian {
-                true => writer.write_all(&(*value as f32).to_be_bytes())?,
-                false => writer.write_all(&(*value as f32).to_le_bytes())?,
+                true => writer.write_all(&(value as f32).to_be_bytes())?,
+                false => writer.write_all(&(value as f32).to_le_bytes())?,
             }
         }
     }
 
     // write y coordinates
     for value in &block.y {
+        let value: f64 = value * 0.001;
         if double_precision {
             match big_endian {
                 true => writer.write_all(&value.to_be_bytes())?,
@@ -63,14 +65,15 @@ fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, doub
             }
         } else {
             match big_endian {
-                true => writer.write_all(&(*value as f32).to_be_bytes())?,
-                false => writer.write_all(&(*value as f32).to_le_bytes())?,
+                true => writer.write_all(&(value as f32).to_be_bytes())?,
+                false => writer.write_all(&(value as f32).to_le_bytes())?,
             }
         }
     }
     
     // write z coordinates
     for value in &block.z {
+        let value: f64 = value * 0.001;
         if double_precision {
             match big_endian {
                 true => writer.write_all(&value.to_be_bytes())?,
@@ -78,8 +81,8 @@ fn write_plot3d_block_binary<W: Write>(writer: &mut W, block: &Plot3DBlock, doub
             }
         } else {
             match big_endian {
-                true => writer.write_all(&(*value as f32).to_be_bytes())?,
-                false => writer.write_all(&(*value as f32).to_le_bytes())?,
+                true => writer.write_all(&(value as f32).to_be_bytes())?,
+                false => writer.write_all(&(value as f32).to_le_bytes())?,
             }
         }
     }
